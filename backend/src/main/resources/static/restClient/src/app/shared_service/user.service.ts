@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs';
 import { User } from '../user';
+import {map, catchError} from "rxjs/operators";
+import {throwError} from "rxjs";
+import { pipe } from '@angular/core/src/render3/pipe';
 
 
 @Injectable()
+//@Injectable({ providedIn: 'root',})
 export class UserService {
   private baseUrl: string = 'http://localhost:8080/api';
   private headers = new Headers({'Content-Type' : 'application/json'});
@@ -17,9 +18,14 @@ export class UserService {
   }
   getUsers(){
     return this._http.get(this.baseUrl+'/users', this.options)
-    .map((response: Response)=>response.json()).catch(this.errorHandle);
+    .pipe(
+      map((response:Response)=> response.json()),
+      catchError((response:Response)=> throwError(response))
+    );
+  
+  
   }
-  getUser(id:Number){
+ /* getUser(id:Number){
     return this._http.get(this.baseUrl+'/users/'+id, this.options)
     .map((response: Response)=>response.json()).catch(this.errorHandle);
   }
@@ -37,5 +43,5 @@ export class UserService {
   }
   errorHandle(error:Response){
     return Observable.throw(error||"SERVE ERROR");
-  }
+  }*/
 }

@@ -1,3 +1,28 @@
-<p>
-  listuser works!
-</p>
+
+<html>
+  <head>
+       <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <div class="container">
+  <table class="table table-striped">
+      <thead>
+          <th>Id</th>
+          <th>Primeiro nome</th>
+          <th>Segundo nome</th>
+          <td>Operação</td>
+      </thead>
+      <tbody>
+          <tr *ngFor="let user of users">
+              <td>{{user.id}}</td>
+              <td>{{user.fname}}</td>
+              <td>{{user.lname}}</td>
+              <td><button class="btn btn-danger">Delete</button> 
+                <button class="btn btn-primary">Edit </button>  
+               </td>
+        </tr>
+      </tbody>
+  </table>
+  <button class="btn btn-primary">Novo Usuário</button>
+</div>
+</html>
