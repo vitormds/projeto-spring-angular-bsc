@@ -20,5 +20,13 @@ export class ListuserComponent implements OnInit {
       console.log(error);
     })
 }
+deleteUser(user){
+  console.log(user.id);
+  this._userService.deleteUser(user.id).subscribe((data) => {
+        this.users.splice(this.users.indexOf(user),1);
+    },(error) =>{
+      console.log(error);
+    })
 
+ }
 }

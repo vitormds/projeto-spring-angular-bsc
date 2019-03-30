@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import { Observable } from 'rxjs';
 import { User } from '../user';
 import {map, catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
-import { pipe } from '@angular/core/src/render3/pipe';
+
 
 
 @Injectable()
@@ -23,25 +22,33 @@ export class UserService {
       catchError((response:Response)=> throwError(response))
     );
   
-  
   }
- /* getUser(id:Number){
+getUser(id:Number){
     return this._http.get(this.baseUrl+'/users/'+id, this.options)
-    .map((response: Response)=>response.json()).catch(this.errorHandle);
+    .pipe(
+       map((response: Response) => response.json()),
+      catchError((response: Response) => throwError(response)));
   }
   deleteUser(id:Number){
     return this._http.delete(this.baseUrl+'/user/'+id, this.options)
-    .map((response: Response)=>response.json()).catch(this.errorHandle);
+    .pipe(
+      map((response: Response) => response.json()),
+      catchError((response: Response) => throwError(response)));
+
   }
   createUser(user:User){
     return this._http.post(this.baseUrl+'/user',JSON.stringify(user), this.options)
-    .map((response: Response)=>response.json()).catch(this.errorHandle);
+    .pipe(
+      map((response: Response) => response.json()),
+      catchError((response: Response) => throwError(response)));
   }
   updateUser(user:User){
     return this._http.put(this.baseUrl+'/user',JSON.stringify(user), this.options)
-    .map((response: Response)=>response.json()).catch(this.errorHandle);
+    .pipe(
+      map((response: Response) => response.json()),
+      catchError((response: Response) => throwError(response)));
   }
-  errorHandle(error:Response){
-    return Observable.throw(error||"SERVE ERROR");
-  }*/
+    //errorHandle(error:Response){
+    //  return Observable.throw(error||"SERVE ERROR");
+    //}
 }
