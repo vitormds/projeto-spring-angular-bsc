@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./listuser.component.css']
 })
 export class ListuserComponent implements OnInit {
-  private users: User[];
+   users: User[];
   constructor(private _userService: UserService, private _router:Router ) { }
 
   ngOnInit() {

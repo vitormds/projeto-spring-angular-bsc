@@ -8,6 +8,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import {HttpModule} from '@angular/http';
 import { UserService } from './shared_service/user.service';
 import {FormsModule} from '@angular/forms';
+import {APP_BASE_HREF} from '@angular/common';
 
 
 const appRoutes:Routes=[
@@ -19,15 +20,17 @@ const appRoutes:Routes=[
   declarations: [
     AppComponent,
     ListuserComponent,
-    UserFormComponent
-  ],
+    UserFormComponent, 
+   
+    ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService],
+  providers:  [UserService,{provide: APP_BASE_HREF, useValue: '/dist/'}],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

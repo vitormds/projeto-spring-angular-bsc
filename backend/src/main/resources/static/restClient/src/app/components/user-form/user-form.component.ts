@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-  private user: User;
+   user: User;
 
   
 
