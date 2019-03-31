@@ -7,9 +7,8 @@ import { ListuserComponent } from './components/listuser/listuser.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import {HttpModule} from '@angular/http';
 import { UserService } from './shared_service/user.service';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import {FormsModule} from '@angular/forms';
+
 
 const appRoutes:Routes=[
   {path: '', component:ListuserComponent},
@@ -25,6 +24,7 @@ const appRoutes:Routes=[
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [UserService],
